@@ -1,7 +1,5 @@
 BẢN GHI CHÚ HỌC TẬP CHI TIẾT - BUỔI 01: HỆ THỐNG QUẢN TRỊ QUY TRÌNH NGHIỆP VỤ (BPM)
 
-Tài liệu này tổng hợp toàn bộ nội dung trọng tâm từ buổi học ngày 07/07/2026. Với tư cách là Trợ giảng Chuyên gia về BPM, tôi nhấn mạnh rằng buổi học này không chỉ cung cấp kiến thức nền tảng mà còn thiết lập "luật chơi" khắt khe cho đồ án tiểu luận – trục xương sống giúp sinh viên chuyển đổi từ tư duy nghiệp vụ rời rạc sang tư duy kiến trúc hệ thống.
-
 I. Thông tin Hành chính & Quy định Khóa học
 
 1. Bối cảnh và Tầm quan trọng Chiến lược

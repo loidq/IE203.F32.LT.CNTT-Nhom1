@@ -1,7 +1,5 @@
 BẢN GHI CHÚ HỌC TẬP CHI TIẾT: BUỔI 02 - HỆ THỐNG QUẢN TRỊ QUY TRÌNH NGHIỆP VỤ (BPM)
 
-Buổi học thứ 02 tập trung vào việc củng cố tư duy hệ thống thông qua việc phân tích các tình huống thực tiễn và thiết lập nền tảng lý thuyết về mô hình hóa quy trình. Việc thấu hiểu các thành phần tham gia (Actors) và cách phân loại quy trình là bước đệm bắt buộc để thực hiện các cải tiến vận hành chuyên sâu trong doanh nghiệp.
-
 1. Tổng quan và Chữa bài tập về nhà
 
 Việc xác định đúng Actor và loại hình quy trình không chỉ giúp mô hình hóa chính xác mà còn là cơ sở để phát hiện các "điểm nghẽn" (bottlenecks) và sự dư thừa (redundancies) trong hệ thống.
