@@ -1,0 +1,124 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="bj8MlXOC71u91t0EOYb7">
+    <mxGraphModel dx="768" dy="824" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rminQEL1rFSFowkKoVZt-6" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="&lt;div style=&quot;&quot;&gt;Gửi yêu cầu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;tuyển dụng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="150" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-8" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div style=&quot;&quot;&gt;Gửi yêu cầu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;tuyển dụng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="270" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-10" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;div style=&quot;&quot;&gt;Tiếp nhận và&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;sàng lọc hồ sơ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;ứng viên&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="390" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-11" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;div style=&quot;&quot;&gt;Tổ chức&lt;/div&gt;&lt;div style=&quot;&quot;&gt;phỏng vấn và&lt;/div&gt;&lt;div style=&quot;&quot;&gt;đánh giá ứng viên&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="510" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-14" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;div style=&quot;&quot;&gt;Lựa chọn&lt;/div&gt;&lt;div style=&quot;&quot;&gt;ứng viên&lt;/div&gt;&lt;div style=&quot;&quot;&gt;phù hợp&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="630" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-15" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad7ac;strokeColor=#b46504;" value="&lt;div style=&quot;&quot;&gt;Gửi đề nghị&lt;/div&gt;&lt;div style=&quot;&quot;&gt;làm việc và ký&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hợp đồng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;lao động&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="30" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-16" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad9d5;strokeColor=#ae4132;" value="&lt;div style=&quot;&quot;&gt;Hướng dẫn&lt;/div&gt;&lt;div style=&quot;&quot;&gt;nhân viên mới&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hội nhập&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="150" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-17" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b0e3e6;strokeColor=#0e8088;" value="&lt;div style=&quot;&quot;&gt;Đào tạo về&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; sản phẩm, phục vụ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;pha chế, an toàn,&lt;/div&gt;&lt;div style=&quot;&quot;&gt;và quy định&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="270" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-18" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b1ddf0;strokeColor=#10739e;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; Kiểm tra kiến thức&lt;/div&gt;&lt;div style=&quot;&quot;&gt;và kỹ năng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;sau đào tạo&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="390" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-19" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#d0cee2;strokeColor=#56517e;" value="&lt;div style=&quot;&quot;&gt;Phân công&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Nhân viên làm&lt;/div&gt;&lt;div style=&quot;&quot;&gt;việc tại cửa hàng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="510" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-20" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#bac8d3;strokeColor=#23445d;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; Theo dõi thử việc&lt;/div&gt;&lt;div style=&quot;&quot;&gt;và đánh giá&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hiệu quả làm việc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="630" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="rminQEL1rFSFowkKoVZt-5" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Xác định nhu cầu nhân sự" vertex="1">
+          <mxGeometry height="90" width="130" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-13" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;Ghi nhận yêu cầu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;trên hệ thống&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hỗ trợ&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="163" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-14" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; Phân loại mức độ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;ảnh hưởng và&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mức độ ưu tiên&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="283" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-15" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Kiểm tra hệ thống&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;POS, mạng, máy in,&lt;/div&gt;&lt;div style=&quot;&quot;&gt;thiết bị hoặc&lt;/div&gt;&lt;div style=&quot;&quot;&gt;phần mềm&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="403" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-16" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;div style=&quot;&quot;&gt;Xác định&lt;/div&gt;&lt;div style=&quot;&quot;&gt;nguyên nhân&lt;/div&gt;&lt;div style=&quot;&quot;&gt;sự cố&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="523" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-17" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;div style=&quot;&quot;&gt;Thực hiện sửa&lt;/div&gt;&lt;div style=&quot;&quot;&gt;chữa, cấu hình&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hoặc thay thế&lt;/div&gt;&lt;div style=&quot;&quot;&gt;thiết bị&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="643" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-18" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad7ac;strokeColor=#b46504;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp; Kiểm tra hệ thống&lt;/div&gt;&lt;div style=&quot;&quot;&gt;sau khi xử lý&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="43" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-19" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad9d5;strokeColor=#ae4132;" value="&lt;div style=&quot;&quot;&gt;Người sử dụng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;xác nhận hệ thống&lt;/div&gt;&lt;div style=&quot;&quot;&gt;hoạt động&lt;/div&gt;&lt;div style=&quot;&quot;&gt;bình thưởng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="163" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-20" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b0e3e6;strokeColor=#0e8088;" value="&lt;div style=&quot;&quot;&gt;Đóng yêu cầu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp;và lưu lại lịch sử&lt;/div&gt;&lt;div style=&quot;&quot;&gt;xử lý&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="283" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-21" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b1ddf0;strokeColor=#10739e;" value="&lt;div style=&quot;&quot;&gt;Phân tích sự cố&lt;/div&gt;&lt;div style=&quot;&quot;&gt;để để xuất biện&lt;/div&gt;&lt;div style=&quot;&quot;&gt;pháp phòng ngừa&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="403" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-22" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#d0cee2;strokeColor=#56517e;" value="&lt;div style=&quot;&quot;&gt;Thực hiện sao lưu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;cập nhật và bảo vệ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;dữ liệu định kỳ&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="163" x="523" y="454" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-24" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="&amp;nbsp; &amp;nbsp; Tiếp nhận nhu cầu&lt;div&gt;&amp;nbsp; &amp;nbsp; hoặc yêu cầu hỗ&amp;nbsp;&lt;/div&gt;&lt;div&gt;trợ&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;từ người&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;sử dụng&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="43" y="354" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-25" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="&lt;div style=&quot;&quot;&gt;Thu ngân&lt;/div&gt;&lt;div style=&quot;&quot;&gt;kiểm đếm&lt;/div&gt;&lt;div style=&quot;&quot;&gt;tiền mặc&lt;/div&gt;&lt;div style=&quot;&quot;&gt;cuối ca&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="163" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-26" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; Quản lý cửa hàng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;Đối chiếu tiền&lt;/div&gt;&lt;div style=&quot;&quot;&gt;thực tế với&lt;/div&gt;&lt;div style=&quot;&quot;&gt;dữ liệu POS&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="283" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-27" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;div style=&quot;&quot;&gt;Lập báo cáo&lt;/div&gt;&lt;div style=&quot;&quot;&gt;doanh thu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;theo ca và&lt;/div&gt;&lt;div style=&quot;&quot;&gt;theo ngày&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="403" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-28" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;div style=&quot;&quot;&gt;Nộp tiền mặc&lt;/div&gt;&lt;div style=&quot;&quot;&gt;và tài khoản&lt;/div&gt;&lt;div style=&quot;&quot;&gt;ngân hàng theo&lt;/div&gt;&lt;div style=&quot;&quot;&gt;quy định&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="523" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-29" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;div style=&quot;&quot;&gt;Kế toán đối soát&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;doanh thu tiền mặt,&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; thẻ và thanh toán&lt;/div&gt;&lt;div style=&quot;&quot;&gt;trực tuyến&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="643" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-30" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad7ac;strokeColor=#b46504;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp;Đối soát doanh thu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;và chiết khấu với&lt;/div&gt;&lt;div style=&quot;&quot;&gt;các nền tảng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;giao hàng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="43" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-31" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#fad9d5;strokeColor=#ae4132;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp;Ghi nhận chi phí&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; mua nguyên liệu&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; lương, mặt bằng&lt;/div&gt;&lt;div style=&quot;&quot;&gt;và vận hành&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="163" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-32" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b0e3e6;strokeColor=#0e8088;" value="&lt;div style=&quot;&quot;&gt;Xử lý các khoản&lt;/div&gt;&lt;div style=&quot;&quot;&gt;chênh lệch hoặc&lt;/div&gt;&lt;div style=&quot;&quot;&gt;giao dịch bất&lt;/div&gt;&lt;div style=&quot;&quot;&gt;thường&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="283" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-33" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#b1ddf0;strokeColor=#10739e;" value="&lt;div style=&quot;&quot;&gt;Lập báo cáo&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; &amp;nbsp;doanh thu, chi phí&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;lợi nhuận và&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;dòng tiền&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="403" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-34" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#d0cee2;strokeColor=#56517e;" value="&lt;div style=&quot;&quot;&gt;&amp;nbsp; Thực hiện nghĩa vụ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;thuế và lưu trữ&lt;/div&gt;&lt;div style=&quot;&quot;&gt;chứng từ&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="523" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-35" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=center;fillColor=#bac8d3;strokeColor=#23445d;" value="&lt;div style=&quot;&quot;&gt;Cung cấp báo cáo&lt;/div&gt;&lt;div style=&quot;&quot;&gt;cho ban&lt;/div&gt;&lt;div style=&quot;&quot;&gt;giám đốc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="643" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-36" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Hệ thống ghi&lt;div&gt;nhận các giao&lt;/div&gt;&lt;div&gt;dịch bán hàng&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="43" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-37" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Quy trình tuyển dụng, đào tạo và quản lý nhân sự" vertex="1">
+          <mxGeometry height="30" width="421" x="38" y="6" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-38" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Quy trình quản lý hệ thống công nghệ thông tin" vertex="1">
+          <mxGeometry height="30" width="421" x="30" y="306" as="geometry" />
+        </mxCell>
+        <mxCell id="tKG-PeSIxx_F-vTkH_bo-39" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Quy trình quản lý tài chính, kế toán và đối soát doanh thu" vertex="1">
+          <mxGeometry height="30" width="421" x="43" y="632" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
