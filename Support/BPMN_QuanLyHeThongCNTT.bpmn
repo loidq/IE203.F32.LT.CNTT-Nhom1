@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_QuanLyHeThongCNTT" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_QuanLyHeThongCNTT">
+    <bpmn:participant id="Participant_User" name="Người sử dụng" processRef="Process_User" />
+    <bpmn:participant id="Participant_Highlands" name="Highlands Coffee" processRef="Process_Highlands_IT" />
+    <bpmn:participant id="Participant_Vendor" name="Nhà cung cấp phần mềm và thiết bị" processRef="Process_Vendor" />
+    <bpmn:messageFlow id="MessageFlow_Request" name="Yêu cầu hỗ trợ" sourceRef="Task_User_Submit" targetRef="Start_IT_Request" />
+    <bpmn:messageFlow id="MessageFlow_Notify" name="Thông báo kết quả" sourceRef="Task_IT_NotifyUser" targetRef="Catch_User_Notify" />
+    <bpmn:messageFlow id="MessageFlow_UserFeedback" name="Phản hồi xác nhận" sourceRef="Task_User_Feedback" targetRef="Catch_IT_UserFeedback" />
+    <bpmn:messageFlow id="MessageFlow_ToVendor" name="Chuyển xử lý" sourceRef="Task_IT_SendVendor" targetRef="Start_Vendor_Request" />
+    <bpmn:messageFlow id="MessageFlow_FromVendor" name="Kết quả xử lý" sourceRef="Task_Vendor_SendResult" targetRef="Catch_IT_VendorResult" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_User" isExecutable="false">
+    <bpmn:startEvent id="Start_User_Need" name="Phát sinh nhu cầu / sự cố">
+      <bpmn:outgoing>Flow_User_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_User_Submit" name="Gửi yêu cầu hỗ trợ">
+      <bpmn:incoming>Flow_User_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateCatchEvent id="Catch_User_Notify" name="Nhận thông báo xử lý">
+      <bpmn:incoming>Flow_User_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_3</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_UserNotify" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Task_User_Verify" name="Kiểm tra hệ thống thực tế">
+      <bpmn:incoming>Flow_User_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_User_Normal" name="Hoạt động bình thường?">
+      <bpmn:incoming>Flow_User_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_User_6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_User_Feedback" name="Gửi phản hồi xác nhận">
+      <bpmn:incoming>Flow_User_5</bpmn:incoming>
+      <bpmn:incoming>Flow_User_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_User_Done" name="Hoàn tất phản hồi">
+      <bpmn:incoming>Flow_User_7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_User_1" sourceRef="Start_User_Need" targetRef="Task_User_Submit" />
+    <bpmn:sequenceFlow id="Flow_User_2" sourceRef="Task_User_Submit" targetRef="Catch_User_Notify" />
+    <bpmn:sequenceFlow id="Flow_User_3" sourceRef="Catch_User_Notify" targetRef="Task_User_Verify" />
+    <bpmn:sequenceFlow id="Flow_User_4" sourceRef="Task_User_Verify" targetRef="Gateway_User_Normal" />
+    <bpmn:sequenceFlow id="Flow_User_5" name="Có" sourceRef="Gateway_User_Normal" targetRef="Task_User_Feedback" />
+    <bpmn:sequenceFlow id="Flow_User_6" name="Không" sourceRef="Gateway_User_Normal" targetRef="Task_User_Feedback" />
+    <bpmn:sequenceFlow id="Flow_User_7" sourceRef="Task_User_Feedback" targetRef="End_User_Done" />
+  </bpmn:process>
+  <bpmn:process id="Process_Highlands_IT" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Highlands_IT">
+      <bpmn:lane id="Lane_IT" name="Bộ phận công nghệ thông tin">
+        <bpmn:flowNodeRef>Start_IT_Request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_RecordTicket</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_Classify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_Critical</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_CheckSystem</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_FindCause</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_NeedVendor</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_SendVendor</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Catch_IT_VendorResult</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_NeedCost</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_FixReplace</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_TestSystem</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_Stable</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_NotifyUser</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Catch_IT_UserFeedback</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_UserConfirm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_IT_CloseTicket</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_SplitFollowUp</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Operations" name="Bộ phận vận hành">
+        <bpmn:flowNodeRef>Task_Ops_Coordinate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Ops_Prevent</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_IT_JoinFollowUp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_IT_Controlled</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Security" name="Bộ phận bảo mật thông tin">
+        <bpmn:flowNodeRef>Task_Sec_BackupProtect</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Finance" name="Bộ phận tài chính">
+        <bpmn:flowNodeRef>Task_Fin_ApproveCost</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Start_IT_Request" name="Tiếp nhận yêu cầu hỗ trợ">
+      <bpmn:outgoing>Flow_IT_1</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_ITRequest" />
+    </bpmn:startEvent>
+    <bpmn:task id="Task_IT_RecordTicket" name="Ghi nhận yêu cầu trên hệ thống hỗ trợ">
+      <bpmn:incoming>Flow_IT_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_IT_Classify" name="Phân loại ảnh hưởng và ưu tiên">
+      <bpmn:incoming>Flow_IT_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_IT_Critical" name="Sự cố nghiêm trọng?">
+      <bpmn:incoming>Flow_IT_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_Ops_Coordinate" name="Thông báo vận hành / bảo mật">
+      <bpmn:incoming>Flow_IT_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_IT_CheckSystem" name="Kiểm tra POS, mạng, máy in, thiết bị hoặc phần mềm">
+      <bpmn:incoming>Flow_IT_5</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_IT_FindCause" name="Xác định nguyên nhân sự cố">
+      <bpmn:incoming>Flow_IT_7</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_22</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_24</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_IT_NeedVendor" name="Cần nhà cung cấp?">
+      <bpmn:incoming>Flow_IT_8</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_IT_SendVendor" name="Chuyển yêu cầu cho nhà cung cấp">
+      <bpmn:incoming>Flow_IT_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_11</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateCatchEvent id="Catch_IT_VendorResult" name="Nhận kết quả từ nhà cung cấp">
+      <bpmn:incoming>Flow_IT_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_12</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_VendorResult" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="Gateway_IT_NeedCost" name="Cần thay thiết bị / chi phí?">
+      <bpmn:incoming>Flow_IT_10</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_13</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_14</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_Fin_ApproveCost" name="Phê duyệt chi phí thay thế">
+      <bpmn:incoming>Flow_IT_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_15</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_IT_FixReplace" name="Sửa chữa, cấu hình hoặc thay thế thiết bị">
+      <bpmn:incoming>Flow_IT_14</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_16</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_IT_TestSystem" name="Kiểm tra hệ thống sau xử lý">
+      <bpmn:incoming>Flow_IT_16</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_17</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gateway_IT_Stable" name="Hệ thống ổn định?">
+      <bpmn:incoming>Flow_IT_17</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_18</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_22</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_IT_NotifyUser" name="Thông báo kết quả xử lý">
+      <bpmn:incoming>Flow_IT_18</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_19</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateCatchEvent id="Catch_IT_UserFeedback" name="Nhận phản hồi người dùng">
+      <bpmn:incoming>Flow_IT_19</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_20</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_UserFeedback" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="Gateway_IT_UserConfirm" name="Người dùng xác nhận?">
+      <bpmn:incoming>Flow_IT_20</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_21</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_24</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_IT_CloseTicket" name="Đóng yêu cầu và lưu lịch sử xử lý">
+      <bpmn:incoming>Flow_IT_21</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_25</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="Gateway_IT_SplitFollowUp" name="Theo dõi sau xử lý">
+      <bpmn:incoming>Flow_IT_25</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_26</bpmn:outgoing>
+      <bpmn:outgoing>Flow_IT_27</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="Task_Ops_Prevent" name="Phân tích sự cố và đề xuất phòng ngừa">
+      <bpmn:incoming>Flow_IT_26</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_28</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Sec_BackupProtect" name="Sao lưu, cập nhật và bảo vệ dữ liệu định kỳ">
+      <bpmn:incoming>Flow_IT_27</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_29</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="Gateway_IT_JoinFollowUp">
+      <bpmn:incoming>Flow_IT_28</bpmn:incoming>
+      <bpmn:incoming>Flow_IT_29</bpmn:incoming>
+      <bpmn:outgoing>Flow_IT_30</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:endEvent id="End_IT_Controlled" name="Sự cố được kiểm soát">
+      <bpmn:incoming>Flow_IT_30</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_IT_1" sourceRef="Start_IT_Request" targetRef="Task_IT_RecordTicket" />
+    <bpmn:sequenceFlow id="Flow_IT_2" sourceRef="Task_IT_RecordTicket" targetRef="Task_IT_Classify" />
+    <bpmn:sequenceFlow id="Flow_IT_3" sourceRef="Task_IT_Classify" targetRef="Gateway_IT_Critical" />
+    <bpmn:sequenceFlow id="Flow_IT_4" name="Có" sourceRef="Gateway_IT_Critical" targetRef="Task_Ops_Coordinate" />
+    <bpmn:sequenceFlow id="Flow_IT_5" name="Không" sourceRef="Gateway_IT_Critical" targetRef="Task_IT_CheckSystem" />
+    <bpmn:sequenceFlow id="Flow_IT_6" sourceRef="Task_Ops_Coordinate" targetRef="Task_IT_CheckSystem" />
+    <bpmn:sequenceFlow id="Flow_IT_7" sourceRef="Task_IT_CheckSystem" targetRef="Task_IT_FindCause" />
+    <bpmn:sequenceFlow id="Flow_IT_8" sourceRef="Task_IT_FindCause" targetRef="Gateway_IT_NeedVendor" />
+    <bpmn:sequenceFlow id="Flow_IT_9" name="Có" sourceRef="Gateway_IT_NeedVendor" targetRef="Task_IT_SendVendor" />
+    <bpmn:sequenceFlow id="Flow_IT_10" name="Không" sourceRef="Gateway_IT_NeedVendor" targetRef="Gateway_IT_NeedCost" />
+    <bpmn:sequenceFlow id="Flow_IT_11" sourceRef="Task_IT_SendVendor" targetRef="Catch_IT_VendorResult" />
+    <bpmn:sequenceFlow id="Flow_IT_12" sourceRef="Catch_IT_VendorResult" targetRef="Gateway_IT_NeedCost" />
+    <bpmn:sequenceFlow id="Flow_IT_13" name="Có" sourceRef="Gateway_IT_NeedCost" targetRef="Task_Fin_ApproveCost" />
+    <bpmn:sequenceFlow id="Flow_IT_14" name="Không" sourceRef="Gateway_IT_NeedCost" targetRef="Task_IT_FixReplace" />
+    <bpmn:sequenceFlow id="Flow_IT_15" sourceRef="Task_Fin_ApproveCost" targetRef="Task_IT_FixReplace" />
+    <bpmn:sequenceFlow id="Flow_IT_16" sourceRef="Task_IT_FixReplace" targetRef="Task_IT_TestSystem" />
+    <bpmn:sequenceFlow id="Flow_IT_17" sourceRef="Task_IT_TestSystem" targetRef="Gateway_IT_Stable" />
+    <bpmn:sequenceFlow id="Flow_IT_18" name="Đạt" sourceRef="Gateway_IT_Stable" targetRef="Task_IT_NotifyUser" />
+    <bpmn:sequenceFlow id="Flow_IT_19" sourceRef="Task_IT_NotifyUser" targetRef="Catch_IT_UserFeedback" />
+    <bpmn:sequenceFlow id="Flow_IT_20" sourceRef="Catch_IT_UserFeedback" targetRef="Gateway_IT_UserConfirm" />
+    <bpmn:sequenceFlow id="Flow_IT_21" name="Có" sourceRef="Gateway_IT_UserConfirm" targetRef="Task_IT_CloseTicket" />
+    <bpmn:sequenceFlow id="Flow_IT_22" name="Chưa ổn định" sourceRef="Gateway_IT_Stable" targetRef="Task_IT_FindCause" />
+    <bpmn:sequenceFlow id="Flow_IT_24" name="Không" sourceRef="Gateway_IT_UserConfirm" targetRef="Task_IT_FindCause" />
+    <bpmn:sequenceFlow id="Flow_IT_25" sourceRef="Task_IT_CloseTicket" targetRef="Gateway_IT_SplitFollowUp" />
+    <bpmn:sequenceFlow id="Flow_IT_26" sourceRef="Gateway_IT_SplitFollowUp" targetRef="Task_Ops_Prevent" />
+    <bpmn:sequenceFlow id="Flow_IT_27" sourceRef="Gateway_IT_SplitFollowUp" targetRef="Task_Sec_BackupProtect" />
+    <bpmn:sequenceFlow id="Flow_IT_28" sourceRef="Task_Ops_Prevent" targetRef="Gateway_IT_JoinFollowUp" />
+    <bpmn:sequenceFlow id="Flow_IT_29" sourceRef="Task_Sec_BackupProtect" targetRef="Gateway_IT_JoinFollowUp" />
+    <bpmn:sequenceFlow id="Flow_IT_30" sourceRef="Gateway_IT_JoinFollowUp" targetRef="End_IT_Controlled" />
+  </bpmn:process>
+  <bpmn:process id="Process_Vendor" isExecutable="false">
+    <bpmn:startEvent id="Start_Vendor_Request" name="Nhận yêu cầu chuyển xử lý">
+      <bpmn:outgoing>Flow_Vendor_1</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_VendorRequest" />
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Vendor_Process" name="Phân tích và xử lý theo SLA">
+      <bpmn:incoming>Flow_Vendor_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_Vendor_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Vendor_SendResult" name="Gửi kết quả / khuyến nghị">
+      <bpmn:incoming>Flow_Vendor_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_Vendor_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="End_Vendor_Done" name="Hoàn tất hỗ trợ">
+      <bpmn:incoming>Flow_Vendor_3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Vendor_1" sourceRef="Start_Vendor_Request" targetRef="Task_Vendor_Process" />
+    <bpmn:sequenceFlow id="Flow_Vendor_2" sourceRef="Task_Vendor_Process" targetRef="Task_Vendor_SendResult" />
+    <bpmn:sequenceFlow id="Flow_Vendor_3" sourceRef="Task_Vendor_SendResult" targetRef="End_Vendor_Done" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_QuanLyHeThongCNTT">
+    <bpmndi:BPMNPlane id="BPMNPlane_QuanLyHeThongCNTT" bpmnElement="Collaboration_QuanLyHeThongCNTT">
+      <bpmndi:BPMNShape id="Participant_User_di" bpmnElement="Participant_User" isHorizontal="true">
+        <dc:Bounds x="160" y="100" width="3500" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_Highlands_di" bpmnElement="Participant_Highlands" isHorizontal="true">
+        <dc:Bounds x="160" y="300" width="3500" height="670" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT_di" bpmnElement="Lane_IT" isHorizontal="true">
+        <dc:Bounds x="190" y="300" width="3470" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Operations_di" bpmnElement="Lane_Operations" isHorizontal="true">
+        <dc:Bounds x="190" y="560" width="3470" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Security_di" bpmnElement="Lane_Security" isHorizontal="true">
+        <dc:Bounds x="190" y="680" width="3470" height="140" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Finance_di" bpmnElement="Lane_Finance" isHorizontal="true">
+        <dc:Bounds x="190" y="820" width="3470" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_Vendor_di" bpmnElement="Participant_Vendor" isHorizontal="true">
+        <dc:Bounds x="160" y="1010" width="3500" height="170" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_User_Need_di" bpmnElement="Start_User_Need">
+        <dc:Bounds x="250" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_User_Submit_di" bpmnElement="Task_User_Submit">
+        <dc:Bounds x="340" y="140" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Catch_User_Notify_di" bpmnElement="Catch_User_Notify">
+        <dc:Bounds x="2472" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_User_Verify_di" bpmnElement="Task_User_Verify">
+        <dc:Bounds x="2540" y="140" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_User_Normal_di" bpmnElement="Gateway_User_Normal" isMarkerVisible="true">
+        <dc:Bounds x="2690" y="155" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_User_Feedback_di" bpmnElement="Task_User_Feedback">
+        <dc:Bounds x="2780" y="140" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_User_Done_di" bpmnElement="End_User_Done">
+        <dc:Bounds x="2940" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_IT_Request_di" bpmnElement="Start_IT_Request">
+        <dc:Bounds x="500" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_RecordTicket_di" bpmnElement="Task_IT_RecordTicket">
+        <dc:Bounds x="570" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_Classify_di" bpmnElement="Task_IT_Classify">
+        <dc:Bounds x="730" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_Critical_di" bpmnElement="Gateway_IT_Critical" isMarkerVisible="true">
+        <dc:Bounds x="890" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Ops_Coordinate_di" bpmnElement="Task_Ops_Coordinate">
+        <dc:Bounds x="880" y="585" width="140" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_CheckSystem_di" bpmnElement="Task_IT_CheckSystem">
+        <dc:Bounds x="1040" y="390" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_FindCause_di" bpmnElement="Task_IT_FindCause">
+        <dc:Bounds x="1210" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_NeedVendor_di" bpmnElement="Gateway_IT_NeedVendor" isMarkerVisible="true">
+        <dc:Bounds x="1360" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_SendVendor_di" bpmnElement="Task_IT_SendVendor">
+        <dc:Bounds x="1460" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Catch_IT_VendorResult_di" bpmnElement="Catch_IT_VendorResult">
+        <dc:Bounds x="1640" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_NeedCost_di" bpmnElement="Gateway_IT_NeedCost" isMarkerVisible="true">
+        <dc:Bounds x="1740" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Fin_ApproveCost_di" bpmnElement="Task_Fin_ApproveCost">
+        <dc:Bounds x="1850" y="850" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_FixReplace_di" bpmnElement="Task_IT_FixReplace">
+        <dc:Bounds x="2020" y="390" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_TestSystem_di" bpmnElement="Task_IT_TestSystem">
+        <dc:Bounds x="2190" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_Stable_di" bpmnElement="Gateway_IT_Stable" isMarkerVisible="true">
+        <dc:Bounds x="2350" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_NotifyUser_di" bpmnElement="Task_IT_NotifyUser">
+        <dc:Bounds x="2440" y="390" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Catch_IT_UserFeedback_di" bpmnElement="Catch_IT_UserFeedback">
+        <dc:Bounds x="2630" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_UserConfirm_di" bpmnElement="Gateway_IT_UserConfirm" isMarkerVisible="true">
+        <dc:Bounds x="2730" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IT_CloseTicket_di" bpmnElement="Task_IT_CloseTicket">
+        <dc:Bounds x="2830" y="390" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_SplitFollowUp_di" bpmnElement="Gateway_IT_SplitFollowUp">
+        <dc:Bounds x="3000" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Ops_Prevent_di" bpmnElement="Task_Ops_Prevent">
+        <dc:Bounds x="3100" y="585" width="140" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Sec_BackupProtect_di" bpmnElement="Task_Sec_BackupProtect">
+        <dc:Bounds x="3100" y="710" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_IT_JoinFollowUp_di" bpmnElement="Gateway_IT_JoinFollowUp">
+        <dc:Bounds x="3290" y="625" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_IT_Controlled_di" bpmnElement="End_IT_Controlled">
+        <dc:Bounds x="3440" y="632" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_Vendor_Request_di" bpmnElement="Start_Vendor_Request">
+        <dc:Bounds x="1480" y="1077" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Vendor_Process_di" bpmnElement="Task_Vendor_Process">
+        <dc:Bounds x="1560" y="1055" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Vendor_SendResult_di" bpmnElement="Task_Vendor_SendResult">
+        <dc:Bounds x="1720" y="1055" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_Vendor_Done_di" bpmnElement="End_Vendor_Done">
+        <dc:Bounds x="1880" y="1077" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_User_1_di" bpmnElement="Flow_User_1">
+        <di:waypoint x="286" y="180" />
+        <di:waypoint x="340" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_2_di" bpmnElement="Flow_User_2">
+        <di:waypoint x="460" y="180" />
+        <di:waypoint x="2472" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_3_di" bpmnElement="Flow_User_3">
+        <di:waypoint x="2508" y="180" />
+        <di:waypoint x="2540" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_4_di" bpmnElement="Flow_User_4">
+        <di:waypoint x="2660" y="180" />
+        <di:waypoint x="2690" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_5_di" bpmnElement="Flow_User_5">
+        <di:waypoint x="2740" y="180" />
+        <di:waypoint x="2780" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_6_di" bpmnElement="Flow_User_6">
+        <di:waypoint x="2715" y="205" />
+        <di:waypoint x="2715" y="240" />
+        <di:waypoint x="2780" y="240" />
+        <di:waypoint x="2780" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_7_di" bpmnElement="Flow_User_7">
+        <di:waypoint x="2900" y="180" />
+        <di:waypoint x="2940" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_1_di" bpmnElement="Flow_IT_1">
+        <di:waypoint x="536" y="430" />
+        <di:waypoint x="570" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_2_di" bpmnElement="Flow_IT_2">
+        <di:waypoint x="690" y="430" />
+        <di:waypoint x="730" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_3_di" bpmnElement="Flow_IT_3">
+        <di:waypoint x="850" y="430" />
+        <di:waypoint x="890" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_4_di" bpmnElement="Flow_IT_4">
+        <di:waypoint x="915" y="455" />
+        <di:waypoint x="915" y="585" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_5_di" bpmnElement="Flow_IT_5">
+        <di:waypoint x="940" y="430" />
+        <di:waypoint x="1040" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_6_di" bpmnElement="Flow_IT_6">
+        <di:waypoint x="1020" y="620" />
+        <di:waypoint x="1110" y="620" />
+        <di:waypoint x="1110" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_7_di" bpmnElement="Flow_IT_7">
+        <di:waypoint x="1180" y="430" />
+        <di:waypoint x="1210" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_8_di" bpmnElement="Flow_IT_8">
+        <di:waypoint x="1330" y="430" />
+        <di:waypoint x="1360" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_9_di" bpmnElement="Flow_IT_9">
+        <di:waypoint x="1410" y="430" />
+        <di:waypoint x="1460" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_10_di" bpmnElement="Flow_IT_10">
+        <di:waypoint x="1385" y="455" />
+        <di:waypoint x="1385" y="510" />
+        <di:waypoint x="1765" y="510" />
+        <di:waypoint x="1765" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_11_di" bpmnElement="Flow_IT_11">
+        <di:waypoint x="1580" y="430" />
+        <di:waypoint x="1640" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_12_di" bpmnElement="Flow_IT_12">
+        <di:waypoint x="1676" y="430" />
+        <di:waypoint x="1740" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_13_di" bpmnElement="Flow_IT_13">
+        <di:waypoint x="1765" y="455" />
+        <di:waypoint x="1765" y="890" />
+        <di:waypoint x="1850" y="890" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_14_di" bpmnElement="Flow_IT_14">
+        <di:waypoint x="1790" y="430" />
+        <di:waypoint x="2020" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_15_di" bpmnElement="Flow_IT_15">
+        <di:waypoint x="1990" y="890" />
+        <di:waypoint x="2090" y="890" />
+        <di:waypoint x="2090" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_16_di" bpmnElement="Flow_IT_16">
+        <di:waypoint x="2160" y="430" />
+        <di:waypoint x="2190" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_17_di" bpmnElement="Flow_IT_17">
+        <di:waypoint x="2310" y="430" />
+        <di:waypoint x="2350" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_18_di" bpmnElement="Flow_IT_18">
+        <di:waypoint x="2400" y="430" />
+        <di:waypoint x="2440" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_19_di" bpmnElement="Flow_IT_19">
+        <di:waypoint x="2560" y="430" />
+        <di:waypoint x="2630" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_20_di" bpmnElement="Flow_IT_20">
+        <di:waypoint x="2666" y="430" />
+        <di:waypoint x="2730" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_21_di" bpmnElement="Flow_IT_21">
+        <di:waypoint x="2780" y="430" />
+        <di:waypoint x="2830" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_22_di" bpmnElement="Flow_IT_22">
+        <di:waypoint x="2375" y="455" />
+        <di:waypoint x="2375" y="530" />
+        <di:waypoint x="1270" y="530" />
+        <di:waypoint x="1270" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_24_di" bpmnElement="Flow_IT_24">
+        <di:waypoint x="2755" y="455" />
+        <di:waypoint x="2755" y="545" />
+        <di:waypoint x="1270" y="545" />
+        <di:waypoint x="1270" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_25_di" bpmnElement="Flow_IT_25">
+        <di:waypoint x="2960" y="430" />
+        <di:waypoint x="3000" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_26_di" bpmnElement="Flow_IT_26">
+        <di:waypoint x="3025" y="455" />
+        <di:waypoint x="3025" y="620" />
+        <di:waypoint x="3100" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_27_di" bpmnElement="Flow_IT_27">
+        <di:waypoint x="3050" y="430" />
+        <di:waypoint x="3070" y="430" />
+        <di:waypoint x="3070" y="750" />
+        <di:waypoint x="3100" y="750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_28_di" bpmnElement="Flow_IT_28">
+        <di:waypoint x="3240" y="620" />
+        <di:waypoint x="3315" y="620" />
+        <di:waypoint x="3315" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_29_di" bpmnElement="Flow_IT_29">
+        <di:waypoint x="3240" y="750" />
+        <di:waypoint x="3315" y="750" />
+        <di:waypoint x="3315" y="675" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_IT_30_di" bpmnElement="Flow_IT_30">
+        <di:waypoint x="3340" y="650" />
+        <di:waypoint x="3440" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Vendor_1_di" bpmnElement="Flow_Vendor_1">
+        <di:waypoint x="1516" y="1095" />
+        <di:waypoint x="1560" y="1095" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Vendor_2_di" bpmnElement="Flow_Vendor_2">
+        <di:waypoint x="1680" y="1095" />
+        <di:waypoint x="1720" y="1095" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Vendor_3_di" bpmnElement="Flow_Vendor_3">
+        <di:waypoint x="1840" y="1095" />
+        <di:waypoint x="1880" y="1095" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_Request_di" bpmnElement="MessageFlow_Request">
+        <di:waypoint x="400" y="220" />
+        <di:waypoint x="400" y="430" />
+        <di:waypoint x="500" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_Notify_di" bpmnElement="MessageFlow_Notify">
+        <di:waypoint x="2500" y="390" />
+        <di:waypoint x="2500" y="198" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_UserFeedback_di" bpmnElement="MessageFlow_UserFeedback">
+        <di:waypoint x="2840" y="220" />
+        <di:waypoint x="2840" y="280" />
+        <di:waypoint x="2648" y="280" />
+        <di:waypoint x="2648" y="412" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_ToVendor_di" bpmnElement="MessageFlow_ToVendor">
+        <di:waypoint x="1520" y="470" />
+        <di:waypoint x="1520" y="1010" />
+        <di:waypoint x="1498" y="1077" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_FromVendor_di" bpmnElement="MessageFlow_FromVendor">
+        <di:waypoint x="1780" y="1055" />
+        <di:waypoint x="1780" y="980" />
+        <di:waypoint x="1658" y="980" />
+        <di:waypoint x="1658" y="448" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
